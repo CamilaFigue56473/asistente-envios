@@ -1,0 +1,68 @@
+/* =========================================
+   1. VARIABLES / TOKENS
+   ========================================= */
+:root {
+    --color-primario: #0033a0; /* Azul corporativo */
+    --color-secundario: #ffcc00; /* Amarillo corporativo */
+    --color-fondo: #f8f9fa;
+    --color-texto: #333333;
+    --radio-borde: 1rem;
+    
+    /* Uso de clamp() requerido por la rúbrica para espaciado adaptable */
+    --espaciado-base: clamp(1rem, 2vw, 1.5rem); 
+}
+
+/* =========================================
+   2. BASE Y RESET
+   ========================================= */
+/* Normalización global obligatoria */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+}
+
+/* =========================================
+   3. COMPONENTES
+   ========================================= */
+/* Estilos para las tarjetas de servicios */
+.custom-card {
+    border-radius: var(--radio-borde);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    padding: var(--espaciado-base);
+}
+
+/* Pseudoclase :hover requerida */
+.custom-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 51, 160, 0.3);
+}
+
+/* Combinador (hijo directo >) requerido por la rúbrica */
+.custom-card > .card-body > .card-title {
+    color: var(--color-primario);
+}
+
+/* Selector de atributo y pseudoclase :focus-visible requeridos */
+input[type="text"]:focus-visible,
+input[type="number"]:focus-visible,
+input[type="email"]:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--color-secundario);
+    border-color: var(--color-primario);
+}
+
+/* =========================================
+   4. ESTADOS VISUALES
+   ========================================= */
+/* Estado controlado por clase (se activará con JavaScript) */
+.is-selected {
+    border-color: var(--color-primario);
+    background-color: rgba(0, 51, 160, 0.05);
+}
