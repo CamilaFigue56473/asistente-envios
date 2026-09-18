@@ -34,38 +34,61 @@ const btnLimpiar = document.getElementById('btn-limpiar');
 
 // Evento submit del formulario
 formulario.addEventListener('submit', function(evento) {
-    // 1. Evitamos que la página se recargue (Requisito obligatorio)
+    // 1. Evitamos que la página se recargue
     evento.preventDefault();
 
-    // 2. Capturamos los valores
-    const origen = document.getElementById('origen').value;
-    const destino = document.getElementById('destino').value;
-    const tipoEnvio = document.getElementById('tipo-envio').value;
-    const peso = document.getElementById('peso').value;
-    const urgencia = document.getElementById('urgencia').value;
+    // Botón para aplicar el spinner
+    const btnSubmit = formulario.querySelector('button[type="submit"]');
+    const textoOriginal = btnSubmit.innerHTML;
 
-    // 3. Regla funcional de recomendación
-    let servicioSugerido = "";
-    if (urgencia === "baja") {
-        servicioSugerido = "Servicio Básico";
-    } else if (urgencia === "media") {
-        servicioSugerido = "Servicio Estándar";
-    } else if (urgencia === "alta") {
-        servicioSugerido = "Servicio Prioritario";
-    }
+    // 2. Activar estado de carga (Spinner nativo de Bootstrap)
+    btnSubmit.disabled = true;
+    btnSubmit.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Calculando tarifa...`;
+    panelRecomendacion.classList.add('d-none'); // Ocultamos el panel si ya estaba visible de una consulta anterior
 
-    // 4. Generamos el panel de resumen dinámico
-    resultadoContenido.innerHTML = `
-        <p class="mb-1">Ruta: <strong>${origen}</strong> a <strong>${destino}</strong></p>
-        <p class="mb-1">Envío: <strong>${tipoEnvio}</strong> (${peso} kg)</p>
-        <hr class="border-light">
-        <p class="mb-2">Te sugerimos contratar:</p>
-        <span class="badge bg-light text-primary fs-6 p-2 shadow-sm">${servicioSugerido}</span>
-    `;
+    // 3. Simular tiempo de procesamiento de 1.5 segundos
+    setTimeout(() => {
+        // Capturamos los valores ingresados
+        const origen = document.getElementById('origen').value;
+        const destino = document.getElementById('destino').value;
+        const tipoEnvio = document.getElementById('tipo-envio').value;
+        const peso = document.getElementById('peso').value;
+        const urgencia = document.getElementById('urgencia').value;
 
-    // 5. Mostramos el panel quitando la clase 'd-none' de Bootstrap
-    panelRecomendacion.classList.remove('d-none');
+        // Regla funcional de recomendación 
+        let servicioSugerido = "";
+        if (urgencia === "baja") {
+            servicioSugerido = "Servicio Básico";
+        } else if (urgencia === "media") {
+            servicioSugerido = "Servicio Estándar";
+        } else if (urgencia === "alta") {
+            servicioSugerido = "Servicio Prioritario";
+        }
+
+        // Generar Orden de Transporte (OT) aleatoria de 6 dígitos
+        const numeroOT = Math.floor(Math.random() * 900000) + 100000;
+
+        // Panel de resumen dinámico incluyendo la OT
+        resultadoContenido.innerHTML = `
+            <div class="mb-3">
+                <span class="badge bg-light text-primary fs-6 px-3 py-2 shadow-sm">OT de Cotización: #${numeroOT}</span>
+            </div>
+            <p class="mb-1">Ruta: <strong>${origen}</strong> a <strong>${destino}</strong></p>
+            <p class="mb-1">Envío: <strong>${tipoEnvio}</strong> (${peso} kg)</p>
+            <hr class="border-light">
+            <p class="mb-2">Te sugerimos contratar:</p>
+            <span class="badge bg-white text-primary fs-5 p-2 shadow-sm">${servicioSugerido}</span>
+        `;
+
+        // Mostrar el panel quitando la clase 'd-none'
+        panelRecomendacion.classList.remove('d-none');
+        
+        // Restauramos el botón a su estado original
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = textoOriginal;
+    }, 1500); // 1500 milisegundos = 1.5 segundos
 });
+
 
 // ==========================================
 // 4. RESTABLECER LA INTERFAZ
