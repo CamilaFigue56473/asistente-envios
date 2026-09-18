@@ -38,24 +38,28 @@ body {
     padding: var(--espaciado-base);
 }
 
-/* Pseudoclase :hover requerida */
+/* Pseudoclase :hover  */
 .custom-card:hover {
     transform: translateY(-3px);
     border-color: rgba(0, 51, 160, 0.3);
 }
 
-/* Combinador (hijo directo >) requerido por la rúbrica */
+/* Combinador (hijo directo >) */
 .custom-card > .card-body > .card-title {
     color: var(--color-primario);
 }
 
-/* Selector de atributo y pseudoclase :focus-visible requeridos */
+/* focus-visible */
 input[type="text"]:focus-visible,
 input[type="number"]:focus-visible,
 input[type="email"]:focus-visible,
 select:focus-visible {
     outline: 3px solid var(--color-secundario);
     border-color: var(--color-primario);
+}
+
+.bg-amarillo-corporativo {
+    background-color: var(--color-secundario);
 }
 
 /* =========================================
