@@ -11,19 +11,21 @@
 </head>
 <body class="bg-light">
 
-<!-- se cambia bg-primary por bg-warning (amarillo) y text-dark para el contraste -->
-    <header class="bg-amarillo-corporativo text-dark p-3 shadow-sm">
-        <div class="container d-flex align-items-center">
-            
-            <!-- se cambia la clase me-3 por me-5 para dar el espaciado máximo a la derecha -->
-            <img src="assets/logo_chilexpress_negro.svg" alt="Logo de Chilexpress" style="height: 40px;" class="me-5">
-            
-            <!-- Agregamos fw-bold para que el título destaque mejor -->
-            <h1 class="h4 mb-0 fw-bold">Asistente de Envío Nacional</h1>
+<header class="bg-amarillo-corporativo text-dark p-3 shadow-sm">
+        <div class="container d-flex align-items-center header-adaptable">
+            <!-- Usamos me-md-5 para dar margen solo en escritorio -->
+            <img src="assets/logo_chilexpress_negro.svg" alt="Logo de Chilexpress" style="height: 40px;" class="logo-movil me-md-5">
+            <h1 class="h4 mb-0 fw-bold titulo-movil">Asistente de Envío Nacional</h1>
         </div>
-    </header>
+</header>
 
     <main class="container my-5">
+        <main class="container my-5">
+        <!-- Imagen Principal Adaptable (Banner) -->
+        <div class="mb-4">
+            <img src="assets/banner-envios.jpg" alt="Envíos a todo Chile" class="img-fluid rounded-4 shadow-sm w-100" style="max-height: 250px; object-fit: cover;">
+        </div>
+
         <div class="row gy-4">
             <!-- Columna Izquierda: Formulario -->
             <section class="col-lg-7" id="seccion-formulario">

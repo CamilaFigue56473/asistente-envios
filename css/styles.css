@@ -70,3 +70,21 @@ select:focus-visible {
     border-color: var(--color-primario);
     background-color: rgba(0, 51, 160, 0.05);
 }
+
+/* =========================================
+   5. DISEÑO ADAPTABLE (MEDIA QUERIES)
+   ========================================= */
+@media (max-width: 768px) {
+    .header-adaptable {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    .titulo-movil {
+        font-size: 1.25rem;
+        margin-top: 0.5rem;
+    }
+    .logo-movil {
+        margin-bottom: 0.5rem;
+    }
+}
